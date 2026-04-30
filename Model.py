@@ -6,6 +6,8 @@ from Helpers import to_decimal
 
 
 def buy(date: str, name: str, ticker: str, quantity: float, price: float, fees: float) -> None:
+    """Enregistre une transaction d'achat pour un actif donné."""
+
     transaction = Transaction(
         date=datetime.fromisoformat(date),
         name=name.title(),
@@ -20,6 +22,8 @@ def buy(date: str, name: str, ticker: str, quantity: float, price: float, fees: 
 
 
 def sell(date: str, name: str, ticker: str, quantity: float, price: float, fees: float) -> None:
+    """Enregistre une transaction de vente après avoir validé la possibilité de réaliser cette vente."""
+
     situation = build_situation()
 
     validate_sell(situation, ticker, quantity)
@@ -38,6 +42,8 @@ def sell(date: str, name: str, ticker: str, quantity: float, price: float, fees:
 
 
 def apply_buy(position: Position, transaction) -> None:
+    """Met à jour la quantité et le prix de revient unitaire moyen d'une position après un achat."""
+
     current_cost = (position.quantity * position.average_cost)
 
     new_cost = (transaction.quantity * transaction.price) + transaction.fees
@@ -52,6 +58,8 @@ def apply_buy(position: Position, transaction) -> None:
 
 
 def apply_sell(position: Position, transaction) -> None:
+    """Met à jour la quantité et le PnL réalisé d'une position après une vente."""
+
     pnl = (transaction.price - position.average_cost) * transaction.quantity
 
     position.realized_pnl += pnl
@@ -60,6 +68,8 @@ def apply_sell(position: Position, transaction) -> None:
 
 
 def build_situation() -> PortfolioSituation:
+    """Reconstruit l'état actuel du portefeuille en rejouant l'historique des transactions."""
+
     transactions = load_transactions()
 
     positions = {}
@@ -95,6 +105,8 @@ def build_situation() -> PortfolioSituation:
 
 
 def validate_sell(situation, ticker, quantity):
+    """Vérifie que la vente est possible (actif détenu et quantité suffisante)."""
+
     for position in situation.positions:
 
         if position.ticker == ticker:

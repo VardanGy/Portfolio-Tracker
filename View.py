@@ -5,6 +5,8 @@ from Config import DECIMALS, CURRENCY
 class Display:
 
     def show_menu(self):
+        """Affiche le menu principal et retourne le choix de l'utilisateur."""
+
         print()
         print("1. Acheter")
         print("2. Vendre")
@@ -14,6 +16,8 @@ class Display:
         return input("Choix : ")
 
     def ask_buy(self):
+        """Demande à l'utilisateur les informations d'un achat et les retourne."""
+
         date = input("Date (YYYY-MM-DD) : ")
         name = input("Name : ")
         ticker = input("Ticker : ")
@@ -24,6 +28,8 @@ class Display:
         return date, name, ticker, quantity, price, fees
 
     def ask_sell(self):
+        """Demande à l'utilisateur les informations d'une vente et les retourne."""
+
         date = input("Date (YYYY-MM-DD) : ")
         name = input("Name : ")
         ticker = input("Ticker : ")
@@ -34,6 +40,8 @@ class Display:
         return date, name, ticker, quantity, price, fees
 
     def display_situation(self, situation):
+        """Affiche le portefeuille sous forme de dataframe et fournit d'autres informations."""
+
         rows = []
 
         for position in situation.positions:
