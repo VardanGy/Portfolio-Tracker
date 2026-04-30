@@ -70,5 +70,14 @@
         "quantity": "2.0",
         "price": "183.91",
         "fees": "1.0"
+    },
+    {
+        "date": "2026-04-23T00:00:00",
+        "name": "Novo Nordisk",
+        "ticker": "NOVO-B",
+        "type": "BUY",
+        "quantity": "2.0",
+        "price": "246.7",
+        "fees": "2.0"
     }
 ]

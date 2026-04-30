@@ -1,6 +1,7 @@
 from datetime import datetime
 from Classes import Transaction
 from Helpers import to_decimal, load_json_file, save_json_file
+from Logger import logger
 
 
 def transaction_to_dict(transaction: Transaction) -> dict:
@@ -34,6 +35,8 @@ def dict_to_transaction(data: dict) -> Transaction:
 def save_transaction(transaction: Transaction) -> None:
     """Ajoute une transaction au fichier JSON."""
 
+    logger.info(f"Transaction sauvegardée dans le fichier JSON : {transaction.type} de {transaction.ticker}")
+
     transactions = load_json_file()
 
     transactions.append(transaction_to_dict(transaction))
@@ -43,6 +46,8 @@ def save_transaction(transaction: Transaction) -> None:
 
 def load_transactions() -> list[Transaction]:
     """Charge et retourne toutes les transactions depuis le fichier JSON."""
+
+    logger.info("Chargement des transactions depuis le fichier JSON")
 
     transactions_data = load_json_file()
 

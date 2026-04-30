@@ -1,0 +1,4 @@
+2026-04-30 23:47:58,247 - INFO - NumExpr defaulting to 8 threads.
+2026-04-30 23:49:36,151 - INFO - Achat enregistré : 2.0 actions Novo Nordisk à 246.7€
+2026-04-30 23:49:36,152 - INFO - Transaction sauvegardée dans le fichier JSON : BUY de NOVO-B
+2026-04-30 23:49:53,931 - INFO - Chargement des transactions depuis le fichier JSON

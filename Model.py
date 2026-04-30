@@ -3,10 +3,14 @@ from decimal import Decimal
 from Classes import Transaction, Position, PortfolioSituation
 from Repository import save_transaction, load_transactions
 from Helpers import to_decimal
+from Config import CURRENCY
+from Logger import logger
 
 
 def buy(date: str, name: str, ticker: str, quantity: float, price: float, fees: float) -> None:
     """Enregistre une transaction d'achat pour un actif donné."""
+
+    logger.info(f"Achat enregistré : {quantity} actions {name} à {price}{CURRENCY}")
 
     transaction = Transaction(
         date=datetime.fromisoformat(date),
@@ -23,6 +27,8 @@ def buy(date: str, name: str, ticker: str, quantity: float, price: float, fees: 
 
 def sell(date: str, name: str, ticker: str, quantity: float, price: float, fees: float) -> None:
     """Enregistre une transaction de vente après avoir validé la possibilité de réaliser cette vente."""
+
+    logger.info(f"Vente enregistrée : {quantity} actions {name} à {price}{CURRENCY}")
 
     situation = build_situation()
 
@@ -106,6 +112,8 @@ def build_situation() -> PortfolioSituation:
 
 def validate_sell(situation, ticker, quantity):
     """Vérifie que la vente est possible (actif détenu et quantité suffisante)."""
+
+    logger.warning(f"Vente sur {ticker} refusée pour informations fournies invalides")
 
     for position in situation.positions:
 
