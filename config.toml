@@ -1,0 +1,6 @@
+[paths]
+transactions_file = "transactions.json"
+
+[display]
+decimals = 2
+currency = "€"
